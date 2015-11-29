@@ -72,19 +72,19 @@ void modified_bubble_sort(int a[], int n) {
 }
 
 void selection_sort(int a[], int n) {
-	int i, j, small = a[0], index_of_small = 0; // consider first element to be the smallest
+	int i, j, small, index_of_small;// consider first element to be the smallest
 	take_input(a, n);
 	display(a, n);
 	for (i = 0; i<n; i++) {
+            small = a[i];// set the just next element to small again
 		for (j = i + 1; j<n; j++) {
 			if (a[j] < small) { // finding the smallest element of the array and its index
 				small = a[j];
 				index_of_small = j;
 			}
 		}
+		a[index_of_small] = a[i];// replace the first element in the position of smallest element
 		a[i] = small; // put smallest element in the first
-		a[index_of_small] = a[i]; // replace the first element in the position of smallest element
-		small = a[i + 1]; // set the just next element to small again
 	}
 	printf("\nAfter Sorting\n");
 	display(a,n);
@@ -110,7 +110,7 @@ void merge(int a[], int l, int m, int h) {
 	int subL[size1], subR[size2]; // initialize two temporary array
 	for (i = 0; i<size1; i++) {
 		subL[i] = a[l + i]; // copy everything to left temp array upto size1
-	} 
+	}
 	for (j = 0; j<size2; j++) {
 		subR[j] = a[m + 1 + j]; // copy everything to right temp array upto size2
 	}
@@ -158,12 +158,12 @@ void quick_sort(int a[], int l, int h){
         left = l;
         right = h;
         while(left<right){
-            while(a[left]<=a[pivot_index] && left < h) // increament left if pivot element is larger than left one
+            while(a[left]<=a[pivot_index] && left < h) // increment left if pivot element is larger than left one
                 left++;
             while(a[right]>a[pivot_index]) // // decrease right if pivot element is smaller than right one
                 right--;
             if(left<right){
-                swap_position(&a[left],&a[right]); 
+                swap_position(&a[left],&a[right]);
             }
         }
         swap_position(&a[right],&a[pivot_index]);
@@ -211,3 +211,5 @@ int main() {
     * Other sorting algos will also be added here soon
     */
 }
+
+
